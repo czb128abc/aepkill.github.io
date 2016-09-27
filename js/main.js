@@ -26,15 +26,21 @@ $(document).ready(function () {
   });
 
   // 点击关于按钮
-  var $about = $('#about') , $card = $about.find('.card') , $close = $about.find('.close');
+  var $about = $('#about'), $card = $about.find('.card'), $close = $about.find('.close');
   $('.aepkill-about-button').click(function (event) {
-    $card.removeClass('in');
-    $about.fadeIn(function(){
-      $card.addClass('in');
+    $card.stop().css({
+      top: '-300px',
+      opacity: 0
+    });
+    $about.fadeIn(function () {
+      $card.animate({
+        top: '120px',
+        opacity: 1
+      }, 1000);
     });
     return false;
   })
-  $close.click(function(){
+  $close.click(function () {
     $about.fadeOut();
   });
 });
