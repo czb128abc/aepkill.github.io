@@ -26,10 +26,15 @@ $(document).ready(function () {
   });
 
   // 点击关于按钮
-  var $mask = $('#mask') , $card = $mask.find('.card');
+  var $about = $('#about') , $card = $about.find('.card') , $close = $about.find('.close');
   $('.aepkill-about-button').click(function (event) {
-    $mask.fadeIn();
-    console.log($mask);
+    $card.removeClass('in');
+    $about.fadeIn(function(){
+      $card.addClass('in');
+    });
     return false;
   })
+  $close.click(function(){
+    $about.fadeOut();
+  });
 });
