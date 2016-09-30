@@ -65,16 +65,8 @@
     width: 480px;
     left: 50%;
     margin-left: -240px;
-    top: -300px;
     background:#fff;
     border-radius: 10px;
-    -webkit-transition: all 1s;
-    transition: all 1s;
-    opacity: 0;
-}
-#about .card.in {
-    top: 120px;
-    opacity: 1;
 }
 .bd-user-head,.bd-user-headimg,.bd-user-head:after{
 	border-radius: 50%;

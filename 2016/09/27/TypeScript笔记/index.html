@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      TypeScript装饰器 | AEPKILL 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="AEPKILL">
+    
+    
+
+    <meta name="description" content="TypeScript装饰器的一个非常强大的功能，提供了AOP，反射及元数据，可以用它来实现一些神奇的功能，比如：依赖注入，参数验证等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript装饰器 | AEPKILL">
+<meta property="og:url" content="http://blog.aepkill.com/2016/09/27/TypeScript笔记/index.html">
+<meta property="og:site_name" content="AEPKILL">
+<meta property="og:description" content="TypeScript装饰器的一个非常强大的功能，提供了AOP，反射及元数据，可以用它来实现一些神奇的功能，比如：依赖注入，参数验证等。">
+<meta property="og:updated_time" content="2016-09-28T06:21:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TypeScript装饰器 | AEPKILL">
+<meta name="twitter:description" content="TypeScript装饰器的一个非常强大的功能，提供了AOP，反射及元数据，可以用它来实现一些神奇的功能，比如：依赖注入，参数验证等。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+    <div id="about">
+        <div class="card">
+            <div class="close"></div>
+            <div class="bd-user-head">
+              <img src="/images/header.png" class="bd-user-headimg">
+              <a class="bd-user-imgDescribe"><span>Yeah.</span></a>
+            </div>
+            <h2>AEPKILL</h2>
+            <h4>
+                只是喜欢惹人生气，我的态度依然强硬。
+            </h4>
+            <div class="contact">
+              <a href="https://github.com/aepkill" title="aepkill on GitHub">
+                <i class="icon icon-social-github"></i>
+              </a>
+              <a href="#" title="NULL">
+                <i class="icon icon-social-500px"></i>
+              </a>
+              <a href="#" title="NULL">
+                <i class="icon icon-social-google-plus"></i>
+              </a>
+            </div>
+        </div>
+    </div>
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">AEPKILL</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          你怀疑生活洗刷你的灵感，可你又拖到明晚
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="aepkill-about-button">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archives" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">TypeScript装饰器</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-09-27" class="post-meta__date date">2016-09-27</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/笔记/">笔记</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/typescript/">typescript</a>, <a class="tags-link" href="/tags/笔记/">笔记</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>装饰器是ES7将会提供的功能，目前TypeScript已提供支持，为了避免编译警告，需要在<code>tsconfig.json</code>中设置 <code>compilerOptions</code>字段中的 <code>experimentalDecorators</code> 为 <code>true</code>，如果需要编译器生成 <code>元数据</code> 还需要指定 <code>compilerOptions</code>字段中的 <code>emitDecoratorMetadata</code> 为 true。</p>
+<h2 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h2><p>类装饰器仅接受一个参数，即类的构造函数。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个装饰器工厂</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Say</span>(<span class="params">str: <span class="built_in">string</span></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">fn: <span class="built_in">Function</span></span>) </span>&#123;</div><div class="line">        fn.prototype.Say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(str);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Say(<span class="string">'Its AEPKILL'</span>)</div><div class="line"><span class="keyword">class</span> AEPKILL &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> AEPKILL();</div><div class="line">obj.Say(); <span class="comment">//=&gt; Its AEPKILL</span></div></pre></td></tr></table></figure>
+<p>由于装饰器在类声明后被调用，所以装饰器内修改类的prototype会覆盖类的声明</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Say</span>(<span class="params">str: <span class="built_in">string</span></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">fn: <span class="built_in">Function</span></span>) </span>&#123;</div><div class="line">        fn.prototype.Say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(str);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Say(<span class="string">'Its AEPKILL'</span>)</div><div class="line"><span class="keyword">class</span> AEPKILL &#123;</div><div class="line">  	<span class="keyword">public</span> Say()&#123;</div><div class="line">      	<span class="built_in">console</span>.log(<span class="string">'Fuck'</span>)</div><div class="line">  	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> AEPKILL();</div><div class="line">obj.Say(); <span class="comment">//=&gt; Its AEPKILL [这里依然输出 AEPKILL 而不会输出 Fuck]</span></div></pre></td></tr></table></figure>
+<p>类装饰器可以返回一个值，该值会替换掉类的构造函数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function Replace(fn: &#123; new (): AEPKILL &#125;): &#123; new (): AEPKILL &#125; &#123;</div><div class="line">    return class B extends fn &#123;</div><div class="line">        public Fuck() &#123;</div><div class="line">            console.log('fuck');</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@Replace</div><div class="line">class AEPKILL &#123;</div><div class="line">    public Say() &#123;</div><div class="line">        console.log('say');</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = new AEPKILL();</div><div class="line">obj.Say(); // =&gt; say</div><div class="line">(obj as any).Fuck(); // =&gt; fuck</div></pre></td></tr></table></figure>
+<h2 id="方法装饰器"><a href="#方法装饰器" class="headerlink" title="方法装饰器"></a>方法装饰器</h2><blockquote>
+<p>注意: </p>
+<p>如果代码输出目标版本小于<code>ES5</code>，<em>Property Descriptor</em>将会是<code>undefined</code>。</p>
+<p>装饰器返回的值也会被忽略</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 装饰器</div><div class="line"> * </div><div class="line"> * @param &#123;*&#125; target 作用于实例方法上则是类的property ， 作用于静态方法上</div><div class="line"> * 则是类本身</div><div class="line"> * @param &#123;string&#125; propertyKey 装饰的方法名称</div><div class="line"> * @param &#123;PropertyDescriptor&#125; descriptor 属性描述符</div><div class="line"> * @returns &#123;PropertyDescriptor&#125; 装饰器可以返回一个属性描述符，该属性描述符会替换原属性描述符</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Des</span>(<span class="params">target: <span class="built_in">any</span>, propertyKey: <span class="built_in">string</span>, descriptor: PropertyDescriptor</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> descriptor;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">class</span> AEPKILL &#123;</div><div class="line">    @Des <span class="comment">//=&gt; 这里传给 target 的值是 AEPKILL.prototype</span></div><div class="line">    <span class="keyword">public</span> Say() &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Its AEPKILL'</span>);</div><div class="line">    &#125;</div><div class="line">    @Des <span class="comment">//=&gt; 这里传给 target 的值是 AEPKILL 本身</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Say()&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Its AEPKILL'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="访问符装饰器"><a href="#访问符装饰器" class="headerlink" title="访问符装饰器"></a>访问符装饰器</h2><p>访问符装饰器与方法装饰器相同，不过值得注意的一点事，访问符装饰器不能给同名的 get 和 set 设置不同的装饰器，因为本质上来讲，get 与 set 公用一个 属性名与属性描述符。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Des</span>(<span class="params">target: <span class="built_in">any</span>, propertyKey: <span class="built_in">string</span>, descriptor: PropertyDescriptor</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> descriptor;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">class</span> AEPKILL &#123;</div><div class="line">    <span class="keyword">private</span> _name:<span class="built_in">string</span> = <span class="string">'aepkill'</span>;</div><div class="line"></div><div class="line">    @Des</div><div class="line">	<span class="keyword">public</span> <span class="keyword">get</span> name(): <span class="built_in">string</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 不可以给 set 设置不同的装饰器，会引发编译错误</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">set</span> name(value: <span class="built_in">string</span>) &#123;</div><div class="line">		<span class="keyword">this</span>._name = value;</div><div class="line">	&#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="属性装饰器"><a href="#属性装饰器" class="headerlink" title="属性装饰器"></a>属性装饰器</h2><p>属性属于动态赋值的内容，所以在编译期间拿不到属性的属性描述符，所以装饰器仅接受两个参数。</p>
+<blockquote>
+<p>静态属性虽然可以在编译期间拿到属性描述符，但可能是为了一致性，TypeScript 静态属性装饰器也没有属性描述符这个参数</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 属性装饰器</div><div class="line"> * </div><div class="line"> * @param &#123;*&#125; target 作用于实例方法上则是类的property ， 作用于静态方法上</div><div class="line"> * 则是类本身</div><div class="line"> * @param &#123;string&#125; propertyKey 属性名</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Des</span>(<span class="params">target: <span class="built_in">any</span> , propertyKey: <span class="built_in">string</span></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(target , propertyKey);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> AEPKILL &#123;</div><div class="line">    @Des</div><div class="line">    <span class="keyword">public</span> name: <span class="built_in">string</span> = <span class="string">'aepkill'</span>;</div><div class="line">    @Des</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> static_name: <span class="built_in">string</span> = <span class="string">'static_aepkill'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参数装饰器"><a href="#参数装饰器" class="headerlink" title="参数装饰器"></a>参数装饰器</h2><p>参数装饰器仅可以用于类方法的参数，不可以用在函数上。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 参数装饰器</div><div class="line"> * </div><div class="line"> * @param &#123;*&#125; target 作用于实例方法上则是类的prototype ， 作用于静态方法上</div><div class="line"> * 则是类本身</div><div class="line"> * @param &#123;(string|symbol)&#125; propertyKey 方法名</div><div class="line"> * @param &#123;number&#125; paramIndex 参数位置，从左往右，从0开始</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Desc</span>(<span class="params">target: <span class="built_in">any</span>, propertyKey: <span class="built_in">string</span> | symbol, paramIndex: <span class="built_in">number</span></span>) </span>&#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> AEPKILL &#123;</div><div class="line">    <span class="keyword">public</span> Say( @Desc name: <span class="built_in">string</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;name&#125;</span>`</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 不允许，参数装饰器不能用在函数上</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Say</span>(<span class="params"> @Desc name: <span class="built_in">string</span></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h2><h2 id="装饰器原理"><a href="#装饰器原理" class="headerlink" title="装饰器原理"></a>装饰器原理</h2><p>查看编译后的Javascript代码可以看到装饰器也其实没有什么神秘的魔法。</p>
+
+  </section>
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/09/27/TypeScript笔记/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"AEPKILL"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2014-2015. | <a href="https://blog.aepkill.com/">blog.aepkill.com</a> | Power By: Hexo </span>
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
