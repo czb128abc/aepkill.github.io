@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Javascript异步进化史 | AEPKILL 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="AEPKILL">
+    
+    
+
+    <meta name="description" content="Javascript作为一门深度依赖异步操作的语言，从最开始的Callback到Promise再到Promise + Generator 再到最终的语法糖await和async，不得不说关于异步每一次的进步都让人振奋。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript异步进化史 | AEPKILL">
+<meta property="og:url" content="http://aepkill.github.io/2016/10/04/Javascript异步进化史/index.html">
+<meta property="og:site_name" content="AEPKILL">
+<meta property="og:description" content="Javascript作为一门深度依赖异步操作的语言，从最开始的Callback到Promise再到Promise + Generator 再到最终的语法糖await和async，不得不说关于异步每一次的进步都让人振奋。">
+<meta property="og:updated_time" content="2016-10-10T15:18:03.033Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript异步进化史 | AEPKILL">
+<meta name="twitter:description" content="Javascript作为一门深度依赖异步操作的语言，从最开始的Callback到Promise再到Promise + Generator 再到最终的语法糖await和async，不得不说关于异步每一次的进步都让人振奋。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+    <div id="about">
+        <div class="card">
+            <div class="close"></div>
+            <div class="bd-user-head">
+              <img src="/images/header.png" class="bd-user-headimg">
+              <a class="bd-user-imgDescribe"><span>Yeah.</span></a>
+            </div>
+            <h2>AEPKILL</h2>
+            <h4>
+                只是喜欢惹人生气，我的态度依然强硬。
+            </h4>
+            <div class="contact">
+              <a href="https://github.com/aepkill" title="aepkill on GitHub">
+                <i class="icon icon-social-github"></i>
+              </a>
+              <a href="#" title="NULL">
+                <i class="icon icon-social-500px"></i>
+              </a>
+              <a href="#" title="NULL">
+                <i class="icon icon-social-google-plus"></i>
+              </a>
+            </div>
+        </div>
+    </div>
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">AEPKILL</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          你怀疑生活洗刷你的灵感，可你又拖到明晚
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="aepkill-about-button">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archives" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Javascript异步进化史</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-04" class="post-meta__date date">2016-10-04</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/TypeScript/">TypeScript</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Javascript/">Javascript</a>, <a class="tags-link" href="/tags/TypeScript/">TypeScript</a>, <a class="tags-link" href="/tags/笔记/">笔记</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="Callback"><a href="#Callback" class="headerlink" title="Callback"></a>Callback</h2><p>Javascript 作为一个单线程的语言，无论何时都不能卡住，也无法停下来等待某个事件的完成，因为它一旦停下来就意味着浏览器的假死。</p>
+<p>但是，当发起一个网络请求，且服务器没有返回数据的时候，Javascript该干些什么呢？</p>
+<p>停下来？不行，停下来浏览器就假死了。</p>
+<p>继续执行？那么返回的数据给谁呢？</p>
+<p>于是，Javascript引入了异步的概念，我们分两断代码执行，先将此时的代码跑完，等服务器返回数据了在运行设置的回调的函数。</p>
+<p>看起来就像这样：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 获取数据</div><div class="line">function getData(callback: (data:any)=&gt;void) &#123;</div><div class="line">  setTimeout(function()&#123;</div><div class="line">    callback(null , &#123;data:'我是数据'&#125;);</div><div class="line">  &#125;,1000);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 获取数据，并设置回调函数</div><div class="line">// 先执行后面的代码，等数据返回了在执行回调函数</div><div class="line">getData(function(err , data)&#123;</div><div class="line">  if (err === null) &#123;</div><div class="line">      console.log(data);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// other code....</div></pre></td></tr></table></figure>
+<p>看起来似乎是”完美”的解决了等待的问题，代码又可以愉快的跑起来了，但是，考虑这样一种情况：我们要发起两次请求，且第二次请求必须要在第一次完成后才可以发起，于是代码变成了这样：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 发起第一次请求</span></div><div class="line">getData1(<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">  <span class="comment">// 检查是否有异常  </span></div><div class="line">  <span class="keyword">if</span> (err === <span class="literal">null</span>) &#123;</div><div class="line">    	<span class="comment">// 发起第二次请求</span></div><div class="line">        getData2(<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">           </div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这只是两次请求的情况，如果说发起很多次呢，每一次都必须上次的请求完成后才可以发起请求，代码很快就会变成这样：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">getData1(<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err === <span class="literal">null</span>) &#123;</div><div class="line">        getData2(<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (err === <span class="literal">null</span>) &#123;</div><div class="line">                getData3(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                  ....</div><div class="line">                &#125;)</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>嵌套会越来越深，回调的逻辑也会越来与复杂，最终的形式就是著名的 <code>Callback Hell(回调地狱)</code> 。</p>
+<blockquote>
+<p>网络请求很少会产生如此多的嵌套，但在动画效果中，一个元素的动画要等上一个元素动画完成再执行的情况却是再常见不过的了，这种情况下很容易产生回调地狱。</p>
+</blockquote>
+<p>Callback 在概念上来说十分简单，但是在回调依赖变得复杂的时候代码会乱成一团，无法管理。</p>
+<p>而且如果异步发生异常，那么该如何通知回调？</p>
+<p>目前的方式一般是指定回调的第一次参数为 err 参数，异步过程中如果发生异常，那么这个err的值则为异常对象，如果没有异常那么这个err为null，回调函数只需要检查这个err对象是否为空就可以判断异步过程是否有异常。</p>
+<p>这种方式虽然解决了异常处理的问题，但是不得不说解决的方式十分的粗糙，程序员并不希望在每个回调内都复制粘贴异常处理的代码，而是希望把异常都放到一个统一的函数内做处理，回调仅关心真正的业务逻辑。</p>
+<p>亟需一种优雅的方式来解决这些问题，这就是Promise。</p>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><h3 id="Promise-写法"><a href="#Promise-写法" class="headerlink" title="Promise 写法"></a>Promise 写法</h3><p>Promise并不是一种新的语法，它是对回调一种封装，它使用一个对象来传递异步，从而让异步的写法更优雅，使用Promise的异步代码看起来像这样：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      resolve(&#123;data:<span class="string">'我是数据'</span>&#125;);</div><div class="line">    &#125;,<span class="number">1000</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">getData().then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(data);</div><div class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123; <span class="comment">// 处理异常信息</span></div><div class="line">  ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>乍一眼看上去并没有让代码变简单，反而更复杂了，但是对于多个异步互相依赖的情况下，却会简洁很多：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">getData1().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> getData2();</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> getData3();</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(data);</div><div class="line"><span class="comment">// 处理异常</span></div><div class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  </div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 使用 Callback 的情况</span></div><div class="line">getData1(<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err === <span class="literal">null</span>) &#123;</div><div class="line">        getData2(<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (err === <span class="literal">null</span>) &#123;</div><div class="line">                getData3(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                  ....</div><div class="line">                &#125;)</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>对比使用 Callback 完成异步的层层嵌套，Promise 将回调之间嵌套拍平了，无论多少个异步的依赖都只有一层嵌套，而且将异步中的异常都放到了 catch 和 reject 中做处理，而不是每一个回调内都，无疑，这极大的方便了代码的编写，把程序员的思维从回调的嵌套中拉了回来，开始关注真正的代码逻辑。</p>
+<blockquote>
+<p>注意，千万不要把 Promise 写成和 Callback 一样，不然我们会刚走出 <code>Callback Hell</code> 陷入 <code>Promise Hell</code> 。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="comment">// 反面教材</span></div><div class="line">&gt; getData1().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&gt;   getData2().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&gt;     ....</div><div class="line">&gt;   &#125;);</div><div class="line">&gt; &#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Promise-实现"><a href="#Promise-实现" class="headerlink" title="Promise  实现"></a>Promise  实现</h3><p>接下来根据 <a href="https://promisesaplus.com/" target="_blank" rel="external">Promise A+规范</a> 来实现一个标准的 Promise 实现，Promise A+是目前广泛被认可的标准，与之相对应的还有 ES6 Promise 标准，但目前 Promise A+ 更为通用。</p>
+<p>一个标准的 Promise A+ 实现需要通过 <a href="https://github.com/promises-aplus/promises-tests" target="_blank" rel="external">Promise A+测试用例</a> 的全部测试，不然不能称之为一个健全的 Promise 实现。</p>
+<p>完整的代码与注释放在这里: <a href="https://github.com/AepKill/Promise" target="_blank" rel="external">Promise</a> ，已通过全部测试。</p>
+<blockquote>
+<p>Promise 实现起来比较简单，又一个非常重要的基础概念，自己亲手写一遍可以很好的巩固对Promise的理解。</p>
+</blockquote>
+<h2 id="Promise-Generator"><a href="#Promise-Generator" class="headerlink" title="Promise + Generator"></a>Promise + Generator</h2><p>Promise 无疑解决了很多异步的麻烦，但还是不够直观，有没有一种方法可以让我们像写同步代码一样写异步代码，Promise + Generator 给出力答案。</p>
+<p>Generator 函数原本是一个生成器，因为它有一个将控制权切出当前函数，切出当前函数后还可以被恢复执行，而且恢复的时候是接着被切出的时下一条语句执行，所有的闭包的变量都还在：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Generator 函数需要在 function 加一个 * 号</span></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">G</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> a = <span class="keyword">yield</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">let</span> b = <span class="keyword">yield</span> a + <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Generator 返回的是一个迭代器</span></div><div class="line"><span class="keyword">var</span> iter = G();</div><div class="line"><span class="comment">// 调用 next 的时候执行到 yield 1 ，然后控制权被又被切出了G函数， a 等于 yield 返回的值</span></div><div class="line"><span class="keyword">var</span> a = iter.next(); <span class="comment">// a = 1</span></div><div class="line"><span class="comment">// 继续执行 G 函数</span></div><div class="line"><span class="comment">// 从let a = yield 1 后面开始执行</span></div><div class="line"><span class="comment">// 注意我们 next 还传入了一个值，这个值将被赋值给 G 函数内的变量 a </span></div><div class="line"><span class="comment">// b 的值等于 G 函数内的 a + 2，即 222 + 2</span></div><div class="line"><span class="keyword">var</span> b = iter.next(<span class="number">222</span>); <span class="comment">// b = 224</span></div></pre></td></tr></table></figure>
+<p>可以很好的利用这个特性来完成异步，我们 yield 一个 Promise 出去，等这个 Promise 完成了，在通过 next(value) 把完成时的值传回来即可。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">// 两个生成 Promise 的工具方法</div><div class="line">// 根据时间延时触发value</div><div class="line">function reject(value: any, time = 0) &#123;</div><div class="line">    return new Promise(function (resolve, reject) &#123;</div><div class="line">        setTimeout(function () &#123;</div><div class="line">            reject(value);</div><div class="line">        &#125;, time);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">function resolve(value: any, time = 0) &#123;</div><div class="line">    return new Promise(function (resolve, reject) &#123;</div><div class="line">        setTimeout(function () &#123;</div><div class="line">            resolve(value);</div><div class="line">        &#125;, time);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">// 执行异步的代码</div><div class="line">function Run&lt;T extends Promise&lt;U&gt;, U&gt;(fn: () =&gt; Iterable&lt;T&gt;) &#123;</div><div class="line">    let iter = G();</div><div class="line">    function resolve(data?: any) &#123;</div><div class="line">        next(data);</div><div class="line">    &#125;</div><div class="line">    function reject(data?: any) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    function next(data?: any) &#123;</div><div class="line">        let value = iter.next(data).value;</div><div class="line">        if (value) &#123;</div><div class="line">            value.then(resolve, reject);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    next();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 用同步的方式写异步</div><div class="line">Run(function* () &#123;</div><div class="line">    let a = yield resolve(1111, 1000);</div><div class="line">    let b = yield resolve(2222, 1000);</div><div class="line"></div><div class="line">    console.log(a + b); // =&gt; 3333</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="await-async"><a href="#await-async" class="headerlink" title="await/async"></a>await/async</h2><p>Generotor + Promise 允许了我们用同步的方式写异步代码，不过ES7还针对这种方式定义了一个语法糖，await/async 它在写法上更优雅，但是本质上还是 Generotor + Promise。</p>
+<p>我们将上面用 Generotor + Promise  换成 await/async 的写法：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reject</span>&lt;<span class="title">T</span>&gt;(<span class="params">value: T, time = 0</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Promise&lt;T&gt;(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            reject(value);</div><div class="line">        &#125;, time);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolve</span>&lt;<span class="title">T</span>&gt;(<span class="params">value: T, time = 0</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Promise&lt;T&gt;(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            resolve(value);</div><div class="line">        &#125;, time);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">async <span class="function"><span class="keyword">function</span> <span class="title">G</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> a = await resolve(<span class="number">1111</span>, <span class="number">1000</span>);</div><div class="line">    <span class="keyword">let</span> b = await resolve(<span class="number">2222</span>, <span class="number">1000</span>);</div><div class="line">    <span class="built_in">console</span>.log(a + b);</div><div class="line">&#125;</div><div class="line"></div><div class="line">G();</div></pre></td></tr></table></figure>
+<h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><p>简述了异步的发展历史，关于异步时异常这一块没有提到，有时间补上。</p>
+<blockquote>
+<p>本文作者水平有限，难免有理解欠缺或偏差之处，若有不当之处，请不吝赐教。</p>
+<p>您可以通过邮箱联系到我：a@aepkill.com。</p>
+<p>参考：</p>
+<p>Promise A+规范 <a href="https://promisesaplus.com/" target="_blank" rel="external">英文版</a> <a href="http://www.ituring.com.cn/article/66566" target="_blank" rel="external">第三方中文翻译版</a></p>
+<p><a href="http://es6.ruanyifeng.com/#docs/generator" target="_blank" rel="external">ECMAScript6入门手册：Generator函数</a></p>
+<p><a href="http://zhihu.com/question/36972010/answer/71338002" target="_blank" rel="external">Promise的队列与setTimeout的队列有何关联</a></p>
+</blockquote>
+
+  </section>
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/04/Javascript异步进化史/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"AEPKILL"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">&copy; 2016-2020. | <a href="https://aepkill.github.io/">aepkill.github.io</a> | Power By: Hexo </span>
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
