@@ -7,7 +7,7 @@
     
 
     <title>
-      标签: Javascript 
+      Javascript之深拷贝 | AEPKILL 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,15 +16,16 @@
     
     
 
-    <meta name="description" content="AEPKILL BLOG">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签: Javascript">
-<meta property="og:url" content="http://aepkill.github.io/tags/Javascript/index.html">
+    <meta name="description" content="Javascript 实现深拷贝">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript之深拷贝 | AEPKILL">
+<meta property="og:url" content="http://aepkill.github.io/2016/10/03/Javascript之深拷贝/index.html">
 <meta property="og:site_name" content="AEPKILL">
-<meta property="og:description" content="AEPKILL BLOG">
+<meta property="og:description" content="Javascript 实现深拷贝">
+<meta property="og:updated_time" content="2016-10-27T16:03:49.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签: Javascript">
-<meta name="twitter:description" content="AEPKILL BLOG">
+<meta name="twitter:title" content="Javascript之深拷贝 | AEPKILL">
+<meta name="twitter:description" content="Javascript 实现深拷贝">
     
     
     
@@ -172,109 +173,73 @@ classes that you can use:
         <div class="content-wrapper__inner entry">
             
 
+<article class="post-container post-container--single">
 
-  <h1 class="archive-title">标签: Javascript</h1>
-  <hr class="post-list__divider" />
-
-
-<div class="main-post-list">
-    <ol class="post-list">
+  <header class="post-header">
     
-    
-    <li>
+    <h1 class="post-title">Javascript之深拷贝</h1>
 
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/10/22/前端开发中的宽高距离及其应用/" title="link to 前端开发中的宽高距离及其应用">前端开发中的宽高距离及其应用</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-10-22" class="post-list__meta--date date">2016-10-22</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          本文将列举开发过程中会用到一些宽高距离相关的属性与函数，同时补充两个应用实例
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/10/07/zone.js/" title="link to zone.js">zone.js</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-10-07" class="post-list__meta--date date">2016-10-07</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          来自 Angular2 团队的zone.js实现了对异步任务进行了封装，并且提供了异步执行时的 Hook 接口，方便开发者在异步任务执行前后做一些额外的事情，比如：记录日志，监控性能，附加数据到异步上下文中等。
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/10/04/Javascript异步进化史/" title="link to Javascript异步进化史">Javascript异步进化史</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-10-04" class="post-list__meta--date date">2016-10-04</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          Javascript作为一门深度依赖异步操作的语言，从最开始的Callback到Promise再到Promise + Generator 再到最终的语法糖await和async，不得不说关于异步每一次的进步都让人振奋。
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2016/10/03/Javascript之深拷贝/" title="link to Javascript之深拷贝">Javascript之深拷贝</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2016-10-03" class="post-list__meta--date date">2016-10-03</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          Javascript 实现深拷贝
-        
-      </div>
-
-      <hr class="post-list__divider" />
-    </li>
-    
-  </ol>
-
-  <hr class="post-list__divider " />
-
-<nav class="pagination" role="navigation">
     
 
-    <span class="pagination__page-number"> 1 / 1</span>
+    <div class="post-meta">
+      <time datetime="2016-10-03" class="post-meta__date date">2016-10-03</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/Javascript/">Javascript</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Javascript/">Javascript</a>, <a class="tags-link" href="/tags/前端/">前端</a>
+            </font>
+          
+
+      </span>
+    </div>
     
     
-</nav>
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <blockquote>
+<p>&#x672C;&#x6587;&#x4F5C;&#x8005;&#x6C34;&#x5E73;&#x6709;&#x9650;&#xFF0C;&#x82E5;&#x6709;&#x7406;&#x89E3;&#x6B20;&#x7F3A;&#x6216;&#x504F;&#x5DEE;&#x4E4B;&#x5904;&#xFF0C;&#x671B;&#x4E0D;&#x541D;&#x8D50;&#x6559;&#x3002;</p>
+<p>&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x90AE;&#x7BB1;&#x8054;&#x7CFB;&#x5230;&#x6211;&#xFF1A;a@aepkill.com&#x3002;</p>
+</blockquote>
+
+  </section>
+
+  
+  
+
+<section class="post-comments">
+
+    <div class="ds-thread" data-thread-key="2016/10/03/Javascript之深拷贝/"></div>
+
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"AEPKILL"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script> 
+
+</section>
 
 
-</div>
+</article>
+
+
             <footer class="footer">
     <span class="footer__copyright">&copy; 2016-2020. | <a href="https://aepkill.github.io/">aepkill.github.io</a> | Power By: Hexo </span>
 </footer>
@@ -300,6 +265,18 @@ classes that you can use:
 
 
     
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
     
     
     <!--kill ie6 -->

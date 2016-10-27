@@ -22,7 +22,7 @@
 <meta property="og:url" content="http://aepkill.github.io/2016/10/22/前端开发中的宽高距离及其应用/index.html">
 <meta property="og:site_name" content="AEPKILL">
 <meta property="og:description" content="本文将列举开发过程中会用到一些宽高距离相关的属性与函数，同时补充两个应用实例">
-<meta property="og:updated_time" content="2016-10-26T09:53:22.588Z">
+<meta property="og:updated_time" content="2016-10-27T12:25:28.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端开发中的宽高距离及其应用 | AEPKILL">
 <meta name="twitter:description" content="本文将列举开发过程中会用到一些宽高距离相关的属性与函数，同时补充两个应用实例">
@@ -388,7 +388,7 @@ classes that you can use:
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// filename: main.ts </span></div><div class="line"><span class="comment">// &#x5165;&#x53E3;&#x6587;&#x4EF6;</span></div><div class="line"><span class="keyword">import</span> { ImagePlus } from <span class="string">&apos;./ImagePlus&apos;</span>;</div><div class="line"><span class="keyword">import</span> { ImageLayzLoad } from <span class="string">&apos;./ImageLayzLoad&apos;</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> imgs = [...document.getElementsByTagName(<span class="string">&apos;img&apos;</span>)];</div><div class="line"><span class="keyword">var</span> layzLoad = <span class="keyword">new</span> ImageLayzLoad(<span class="string">&apos;./imgs/loading.gif&apos;</span>, <span class="string">&apos;./imgs/failed.jpg&apos;</span>);</div><div class="line"></div><div class="line">imgs.filter(img =&gt; img.hasAttribute(layzLoad.realSrcAttr)).forEach(img =&gt; layzLoad.add(img));</div></pre></td></tr></table></figure>
 <p>&#x5728;&#x7EBF;DEMO: <a href="https://aepkill.github.io/demos/layz-load">ImageLayzLoad</a></p>
 <blockquote>
-<p>&#x672C;&#x6587;&#x4F5C;&#x8005;&#x6C34;&#x5E73;&#x6709;&#x9650;&#xFF0C;&#x96BE;&#x514D;&#x6709;&#x7406;&#x89E3;&#x6B20;&#x7F3A;&#x6216;&#x504F;&#x5DEE;&#x4E4B;&#x5904;&#xFF0C;&#x82E5;&#x6709;&#x4E0D;&#x5F53;&#x4E4B;&#x5904;&#xFF0C;&#x8BF7;&#x4E0D;&#x541D;&#x8D50;&#x6559;&#x3002;</p>
+<p>&#x672C;&#x6587;&#x4F5C;&#x8005;&#x6C34;&#x5E73;&#x6709;&#x9650;&#xFF0C;&#x82E5;&#x6709;&#x7406;&#x89E3;&#x6B20;&#x7F3A;&#x6216;&#x504F;&#x5DEE;&#x4E4B;&#x5904;&#xFF0C;&#x671B;&#x4E0D;&#x541D;&#x8D50;&#x6559;&#x3002;</p>
 <p>&#x53C2;&#x8003;&#xFF1A;</p>
 <ol>
 <li><a href="https://developer.mozilla.org" target="_blank" rel="external">MDN</a></li>
